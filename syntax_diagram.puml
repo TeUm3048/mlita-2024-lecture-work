@@ -1,0 +1,289 @@
+@startuml
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+
+namespace "<Polynom>" as Polynom {
+    () start
+    () end
+    class "<FirstTerm>" as FirstTerm
+    class "<MoreTerms>" as MoreTerms
+    class ""0"" as zero
+    start --> zero
+    zero --> end
+    start --> FirstTerm
+    FirstTerm --> MoreTerms
+    MoreTerms --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<FirstTerm>" as FirstTerm {
+    () start
+    () end
+    class "<Factor>" as Factor
+    namespace "<OptionalSign>" as OptionalSign {
+        () start
+        () end
+        class ""+"" as plus
+        class ""-"" as minus
+
+        start --> plus
+        plus --> end
+        start --> minus
+        minus --> end
+        start --> end
+    }
+    start --> OptionalSign
+    OptionalSign --> Factor
+    Factor --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<MoreTerms>" as MoreTerms {
+    () start
+    () end
+    class ""+"" as plus
+    class ""-"" as minus
+    class "<Factor>" as Factor
+    class "<MoreTerms>" as MoreTerms
+
+    start --> plus
+    plus --> Factor
+    Factor --> MoreTerms
+    start --> minus
+    minus --> Factor
+    MoreTerms --> end
+    start --> end
+}
+
+
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<Factor>" as Factor {
+    () start
+    () end
+    class ""x"" as x
+    class "<PowerPart>" as PowerPart
+    class "<ProperInteger>" as ProperInteger
+    class "MaybeXPart" as MaybeXPart
+
+
+    start -> ProperInteger
+    ProperInteger -> MaybeXPart
+    MaybeXPart --> end
+    start --> x
+    x --> PowerPart
+    PowerPart --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<MaybeXPart>" as MaybeXPart {
+    () start
+    () end
+    class ""x"" as x
+    class ""0"" as zero
+    class "<PowerPart>" as PowerPart
+
+    start --> x
+    x --> PowerPart
+    PowerPart --> end
+    start --> zero
+    zero --> end
+    start --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<PowerPart>" as PowerPart {
+    () start
+    () end
+    class ""^"" as power
+    class "<ProperInteger>" as ProperInteger
+
+    start --> power
+    power --> ProperInteger
+    ProperInteger --> end
+    start --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<ProperInteger>" as ProperInteger {
+    () start
+    () end
+    class "<StartsWith2To9Integer>" as StartsWith2To9Integer
+
+    namespace "<StartsWith1Integer>" as StartsWith1Integer {
+        () start
+        () end
+        class ""1"" as one
+        class "<NonEmptyDigits>" as NonEmptyDigits
+
+        start --> one
+        one --> NonEmptyDigits
+        NonEmptyDigits --> end
+    }
+    namespace "<StartsWith2To9Integer>" as StartsWith2To9Integer {
+
+
+        () start
+        () end
+        class "<OptionalDigits>" as OptionalDigits
+        class "<Digit2to9>" as Digit2to9
+
+
+        start --> Digit2to9
+        Digit2to9 --> OptionalDigits
+        OptionalDigits --> end
+    }
+
+    start --> StartsWith1Integer
+    StartsWith1Integer --> end
+    start --> StartsWith2To9Integer
+    StartsWith2To9Integer --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<NonEmptyDigits>" as NonEmptyDigits {
+    () start
+    () end
+    class "<Digit>" as Digit
+    class "<OptionalDigits>" as OptionalDigits
+
+    start --> Digit
+    Digit --> OptionalDigits
+    OptionalDigits --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<OptionalDigits>" as OptionalDigits {
+    () start
+    () end
+    class "<Digit>" as Digit
+    class "<OptionalDigits>" as OptionalDigits
+
+    start --> Digit
+    Digit --> OptionalDigits
+    OptionalDigits --> end
+    start --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<Digit>" as Digit {
+    () start
+    () end
+    class ""0"" as zero
+    class ""1"" as one
+    class ""2"" as two
+    class ""3"" as three
+    class ""4"" as four
+    class ""5"" as five
+    class ""6"" as six
+    class ""7"" as seven
+    class ""8"" as eight
+    class ""9"" as nine
+
+    start --> zero
+    start --> one
+    start --> two
+    start --> three
+    start --> four
+    start --> five
+    start --> six
+    start --> seven
+    start --> eight
+    start --> nine
+    zero --> end
+    one --> end
+    two --> end
+    three --> end
+    four --> end
+    five --> end
+    six --> end
+    seven --> end
+    eight --> end
+    nine --> end
+}
+newpage
+left to right direction
+hide circle
+hide empty methods
+hide empty attributes
+skinparam linetype polyline
+
+namespace "<Digit2to9>" as Digit2to9 {
+    () start
+    () end
+    class ""2"" as two
+    class ""3"" as three
+    class ""4"" as four
+    class ""5"" as five
+    class ""6"" as six
+    class ""7"" as seven
+    class ""8"" as eight
+    class ""9"" as nine
+
+    start --> two
+    two --> end
+    start --> three
+    three --> end
+    start --> four
+    four --> end
+    start --> five
+    five --> end
+    start --> six
+    six --> end
+    start --> seven
+    seven --> end
+    start --> eight
+    eight --> end
+    start --> nine
+    nine --> end
+}
+@enduml
